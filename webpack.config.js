@@ -13,7 +13,9 @@ module.exports = {
   output: {
     path: __dirname + '/dist',
     filename: '[name].js',
-    chunkFilename: '[name].[id].js'
+    chunkFilename: '[name].[id].js',
+    libraryTarget: 'umd',
+    library: 'CTAs'
   },
   module: {
     rules: [
