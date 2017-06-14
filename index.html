@@ -6,9 +6,13 @@
   </head>
   <body>
     <div id="ctas"></div>
+    <div id="events"></div>
     <script src="dist/index.js"></script>
     <script type="text/javascript">
       new CTAs.Events({
+        target: document.getElementById('events')
+      })
+      new CTAs.Advocacy({
         target: document.getElementById('ctas')
       })
     </script>

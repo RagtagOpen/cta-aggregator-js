@@ -13,8 +13,14 @@ const Api = function(opts) {
       .then(events => events.data.map(e => e.attributes))
   }
 
+  function ctas() {
+    return get(baseUrl+'/advocacy_campaigns')
+      .then(ctas => ctas.data.map(c => c.attributes))
+  }
+
   return {
-    events: events
+    events,
+    ctas
   }
 }
 

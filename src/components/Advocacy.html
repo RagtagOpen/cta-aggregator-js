@@ -1,0 +1,50 @@
+<div>
+  <h3>Advocacy Campaigns</h3>
+  {{#if loading}}
+    loading...
+  {{/if}}
+  {{#each ctas as cta}}
+    <div>
+      <h4><a href="{{cta.browser_url}}">{{cta.title}}</a> ({{cta.origin_system}})</h4>
+      <p>{{cta.description}}</p>
+      <ul>
+      {{#each cta.target_list as target}}
+        <li>
+          {{target.given_name}} {{target.family_name}} ({{target.organization}})
+          <ul>
+            {{#each target.email_addresses as email}}
+              <li><a href="mailto:{{email.address}}">{{email.address}}</a></li>
+            {{/each}}
+            {{#each target.postal_addresses as address}}
+              <li>
+                {{address.venue}}
+                {{address.address_lines.join(", ")}}
+                {{address.locality}}, {{address.region}} {{address.country}}
+              </li>
+            {{/each}}
+          </ul>
+        </li>
+      {{/each}}
+      </ul>
+    </div>
+  {{/each}}
+</div>
+
+<script>
+  import Api from '../api'
+  const api = Api({ baseUrl : 'http://localhost:3000/v1' })
+  export default {
+    data() {
+      return {
+        loading: true,
+        ctas: []
+      }
+    },
+    oncreate() {
+      api.ctas().then(function(ctas) {
+        console.log("first cta:", ctas[0])
+        this.set({ ctas, loading: false })
+      }.bind(this))
+    }
+  }
+</script>
