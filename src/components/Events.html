@@ -1,0 +1,32 @@
+<div>
+  <h3>Events</h3>
+  {{#if loading}}
+    loading...
+  {{/if}}
+  {{#each events as e}}
+  <div>
+    <h4>{{e.title}}</h4>
+    <div>{{e.start_date}} - {{e.end_date}}</div>
+    <p>{{e.description}}</p>
+  </div>
+  {{/each}}
+</div>
+
+<script>
+  import Api from '../api'
+  const api = Api({ baseUrl : 'http://localhost:3000/v1' })
+  export default {
+    data() {
+      return {
+        loading: true,
+        events: []
+      }
+    },
+    oncreate() {
+      api.events().then(function(events) {
+        console.log("events:", events)
+        this.set({ events: events.data.map(e => e.attributes), loading: false })
+      }.bind(this))
+    }
+  }
+</script>
