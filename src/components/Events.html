@@ -5,17 +5,31 @@
   {{/if}}
   {{#each events as e}}
   <div>
-    <h4>{{e.title}}</h4>
-    <div>{{e.start_date}} - {{e.end_date}}</div>
+    <h4><a href="{{e.browser_url}}" target="_blank">{{e.title}} ({{e.origin_system}})</a></h4>
+    <div>{{df(e.start_date)}} - {{df(e.end_date)}}</div>
+    {{#if e.free}}
+      <div>free</div>
+    {{/if}}
+    <!--
+    {{#if e.featured_image_url}}
+      <img src="{{e.featured_image_url}}" alt="{{e.title}}" />
+    {{/if}}
+    -->
     <p>{{e.description}}</p>
   </div>
   {{/each}}
 </div>
 
 <script>
+  import fecha from 'fecha'
   import Api from '../api'
   const api = Api({ baseUrl : 'http://localhost:3000/v1' })
   export default {
+    helpers: {
+      df: (d) => (
+        fecha.format(new Date(d), 'dddd MMMM Do, YYYY h:mm a')
+      )
+    },
     data() {
       return {
         loading: true,
@@ -24,8 +38,8 @@
     },
     oncreate() {
       api.events().then(function(events) {
-        console.log("events:", events)
-        this.set({ events: events.data.map(e => e.attributes), loading: false })
+        console.log("first event:", events[0])
+        this.set({ events, loading: false })
       }.bind(this))
     }
   }

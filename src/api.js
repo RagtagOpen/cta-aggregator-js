@@ -9,7 +9,8 @@ const Api = function(opts) {
   }
 
   function events() {
-    return get(baseUrl+'/events')
+    return get(baseUrl+'/events?include=location')
+      .then(events => events.data.map(e => e.attributes))
   }
 
   return {
@@ -17,4 +18,4 @@ const Api = function(opts) {
   }
 }
 
-module.exports = Api
+export default Api

@@ -11,6 +11,7 @@
   "author": "Jesse Kriss <jesse@jklabs.net>",
   "license": "ISC",
   "dependencies": {
+    "fecha": "^2.3.1",
     "hogan.js": "^3.0.2",
     "promise-polyfill": "6.0.2",
     "tiny-xhr": "^4.1.0",

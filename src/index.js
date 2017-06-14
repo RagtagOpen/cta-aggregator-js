@@ -1,8 +1,5 @@
 import Events from './components/Events'
 
 const app = new Events({
-  target: document.getElementById('ctas'),
-  data: {
-    name: 'floopers'
-  }
+  target: document.getElementById('ctas')
 });
