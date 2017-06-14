@@ -1,0 +1,22 @@
+{
+  "name": "cta-aggregator-js",
+  "version": "0.0.1",
+  "description": "JS client library for Ragtag's CTA Aggregator",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --progress --watch src/index.js dist/bundle.js",
+    "build": "webpack -p src/index.js dist/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jesse Kriss <jesse@jklabs.net>",
+  "license": "ISC",
+  "dependencies": {
+    "hogan.js": "^3.0.2",
+    "promise-polyfill": "6.0.2",
+    "tiny-xhr": "^4.1.0",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "devDependencies": {
+    "webpack": "^2.6.1"
+  }
+}
