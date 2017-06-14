@@ -4,8 +4,8 @@
   "description": "JS client library for Ragtag's CTA Aggregator",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --progress --watch",
-    "build": "webpack -p",
+    "dev": "API_URL=\"http://localhost:3000/v1\" webpack --progress --watch",
+    "build": "API_URL=\"http://localhost:3000/v1\" webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jesse Kriss <jesse@jklabs.net>",

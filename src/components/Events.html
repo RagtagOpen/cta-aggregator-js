@@ -23,7 +23,6 @@
 <script>
   import fecha from 'fecha'
   import Api from '../api'
-  const api = Api({ baseUrl : 'http://localhost:3000/v1' })
   export default {
     helpers: {
       df: (d) => (
@@ -37,7 +36,8 @@
       }
     },
     oncreate() {
-      api.events().then(function(events) {
+      if (!this.api) this.api = Api({ baseUrl : this.get('baseUrl') || process.env.API_URL })
+      this.api.events().then(function(events) {
         console.log("first event:", events[0])
         this.set({ events, loading: false })
       }.bind(this))

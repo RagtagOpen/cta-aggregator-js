@@ -1,7 +1,7 @@
-const { readFileSync } = require('fs');
+const { readFileSync } = require('fs')
+const webpack = require('webpack')
 
 const babelSettings = JSON.parse(readFileSync('.babelrc'));
-
 
 module.exports = {
   entry: {
@@ -17,6 +17,13 @@ module.exports = {
     libraryTarget: 'umd',
     library: 'CTAs'
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'API_URL': JSON.stringify(process.env.API_URL)
+      }
+    })
+  ],
   module: {
     rules: [
       {

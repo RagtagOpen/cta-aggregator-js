@@ -32,7 +32,6 @@
 
 <script>
   import Api from '../api'
-  const api = Api({ baseUrl : 'http://localhost:3000/v1' })
   export default {
     data() {
       return {
@@ -41,7 +40,8 @@
       }
     },
     oncreate() {
-      api.ctas().then(function(ctas) {
+      if (!this.api) this.api = Api({ baseUrl : this.get('baseUrl') || process.env.API_URL })
+      this.api.ctas().then(function(ctas) {
         console.log("first cta:", ctas[0])
         this.set({ ctas, loading: false })
       }.bind(this))
