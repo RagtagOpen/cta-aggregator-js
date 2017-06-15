@@ -5,7 +5,7 @@
   {{/if}}
   {{#each events as e}}
   <div>
-    <h4><a href="{{e.browser_url}}" target="_blank">{{e.title}} ({{e.origin_system}})</a></h4>
+    <h4><a href="{{e.browser_url}}" target="_blank">{{e.title}}</a> ({{e.origin_system}})</h4>
     <div>{{df(e.start_date)}} - {{df(e.end_date)}}</div>
     {{#if e.free}}
       <div>free</div>

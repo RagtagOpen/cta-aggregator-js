@@ -6,22 +6,38 @@
   {{#each ctas as cta}}
     <div>
       <h4><a href="{{cta.browser_url}}">{{cta.title}}</a> ({{cta.origin_system}})</h4>
+      <div>type: {{cta.action_type}}</div>
       <p>{{cta.description}}</p>
+      <p>{{cta.template}}</p>
       <ul>
       {{#each cta.target_list as target}}
         <li>
           {{target.given_name}} {{target.family_name}} ({{target.organization}})
           <ul>
-            {{#each target.email_addresses as email}}
-              <li><a href="mailto:{{email.address}}">{{email.address}}</a></li>
-            {{/each}}
-            {{#each target.postal_addresses as address}}
-              <li>
-                {{address.venue}}
-                {{address.address_lines.join(", ")}}
-                {{address.locality}}, {{address.region}} {{address.country}}
-              </li>
-            {{/each}}
+            {{#if cta.action_type === 'email'}}
+              {{#each target.email_addresses as email}}
+                <li><a href="mailto:{{email.address}}">{{email.address}}</a></li>
+              {{/each}}
+            {{/if}}
+            {{#if cta.action_type === 'phone'}}
+              {{#each target.phone_numbers as phone}}
+                <li>
+                  {{phone.number}}
+                  {{#if phone.extension}}
+                    x{{phone.extension}}
+                  {{/if}}
+                </li>
+              {{/each}}
+            {{/if}}
+            {{#if cta.action_type === 'postal mail' || cta.action_type === 'in-person'}}
+              {{#each target.postal_addresses as address}}
+                <li>
+                  {{address.venue}}
+                  {{address.address_lines.join(", ")}}
+                  {{address.locality}}, {{address.region}} {{address.country}}
+                </li>
+              {{/each}}
+            {{/if}}
           </ul>
         </li>
       {{/each}}
