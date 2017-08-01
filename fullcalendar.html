@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CTA Aggregator Calendar</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js" integrity="sha256-1hjUhpc44NwiNg8OwMu2QzJXhD8kcj+sJA3aCQZoUjg=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" integrity="sha256-Kpo67ZL4Mq+OPqdedHe9lvnMI6i6gZOI1+7NqujLdq0=" crossorigin="anonymous" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js" integrity="sha256-SYIz/7Qe8avYdBE3w2kKVL1PB/mS05GGgKVn5qa86SY=" crossorigin="anonymous"></script>
+    <style media="screen">
+      body {
+        font-family: Helvetica, Arial, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calendar"></div>
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+      $.get('http://localhost:3000/v1/events', function(res) {
+        console.log("got result", res)
+        var events = res.data.map(function(e) {
+          return {
+            title: e.attributes.title,
+            start: e.attributes.start_date,
+            url: e.attributes.browser_url
+          }
+        })
+        console.log("showing events:", events)
+        $('#calendar').fullCalendar({
+          events: events
+        })
+
+      })
+
+
+    });
+    </script>
+  </body>
+</html>
