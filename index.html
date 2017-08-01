@@ -5,9 +5,13 @@
     <title>CTA Aggregator example</title>
   </head>
   <body>
+    <h2>Events</h2>
+    <div id="events"></div>
+    <h2>Calls</h2>
     <div id="ctas"></div>
     <script src="dist/bundle.js"></script>
     <script type="text/javascript">
+      getEvents(document.getElementById('events'))
       getCTAs(document.getElementById('ctas'))
     </script>
   </body>
