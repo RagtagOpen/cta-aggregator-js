@@ -19,8 +19,7 @@ var template = hogan.compile(templateString)
 
 var getEvents = function(el) {
   var options = {
-    // url: 'https://staging-cta-aggregator.herokuapp.com/v1/events',
-    url: 'http://localhost:3000/v1/events?filter[upcoming]=true',
+    url: 'https://cta-aggregator.herokuapp.com/v1/events',
     method: 'GET',
     type: 'json'
   }

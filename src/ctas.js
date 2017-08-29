@@ -25,8 +25,7 @@ var template = hogan.compile(templateString)
 
 var getCTAs = function(el) {
   var options = {
-    // url: 'https://staging-cta-aggregator.herokuapp.com/v1/advocacy_campaigns',
-    url: 'http://localhost:3000/v1/advocacy_campaigns',
+    url: 'https://cta-aggregator.herokuapp.com/v1/advocacy_campaigns',
     method: 'GET',
     type: 'json'
   }
