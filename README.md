@@ -2,6 +2,8 @@
 
 This is a simple example showing fetching and rendering of CTA Aggregator events and calls to action.
 
+You can see a running version at https://ragtagteam.github.io/cta-aggregator-js/.
+
 ### Requirements
 
 You'll need [node and npm](https://nodejs.org/en/) installed on your machine for this example.
